@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href='{% static "marvel/css/style.css" %}'>
+
+
+</head>
+<body>
+    <h1>i am spiderman</h1>
+    <h1>i am a {{superhero}}</h1>
+    <h1>i am {{villain}}</h1>
+
+    {% if superhero == 'spiderman' %}
+    <h2> villain of spiderman is Amar</h2>
+    {% elif superhero == 'Aakash' %}
+    <h2>no one can beat him</h2>
+    {% else %}
+    <h2>no one can beat in this planet</h2>
+    {% endif %}
+
+
+    {% comment "" %}
+    {% for v in villain  %}
+    <h1>{{v}}</h2>
+    {% endfor %}
+    {% endcomment %}
+
+
+<hr>
+    {{superhero}}
+    <h1>{{superhero.spidy}}</h1>
+    <h1>{{superhero.bat}}</h1>
+</body>
+</html>
