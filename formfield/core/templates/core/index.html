@@ -8,15 +8,16 @@
 <body>
   <h1>Django Form</h1>
 
-<form>
+{% comment %} <form>
     {{mf}}
-</form>
+</form> {% endcomment %}
 <br>
 <br>
 
-<h1>Form Fields</h1>
+{% comment %} <h1>Form Fields</h1> {% endcomment %}
 
-<form action="">
+<form action="" method="POST" >
+  {% csrf_token %}
   {{mf}}<br>
   <input type="submit">
 </form>
