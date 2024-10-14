@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Django Form</h1>
+
+{% comment %} <form>
+    {{mf}}
+</form> {% endcomment %}
+<br>
+<br>
+
+{% comment %} <h1>Form Fields</h1> {% endcomment %}
+
+<form action="" method="POST" >
+  {% csrf_token %}
+  {{mf.as_p}}<br>
+  <input type="submit">
+</form>
+
+ 
+</body>
+</html>
