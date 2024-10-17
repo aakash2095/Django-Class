@@ -1,0 +1,52 @@
+{% extends "core/index.html" %}
+
+{% block content %}
+
+<h1 id='crud'>CRUD OPERATION</h1>
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-4">
+        <h1 id='dt'>ENTER YOUR DETAILS</h1>
+      <div class="form-control">     
+       <form action="" method='POST'>
+        {% csrf_token %}
+        {{mf}}
+        <input type="submit" id='submit'>
+    </form>
+      </div>
+    </div>
+
+
+    <div class="col-md-8">
+   <h1 id='db'>DATABASE</h1>
+   <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        {% for m in marvel %}
+            <th scope="row">{{m.id}}</th>
+            <td>{{m.name}}</td>
+            <td>{{m.Email}}</td>
+            <td><button>Edit</button></td>
+            <td><button>Delete</button></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    </div>
+</div>
+
+</div>
+
+
+
+
+{% endblock content %}
