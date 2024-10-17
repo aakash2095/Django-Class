@@ -8,7 +8,7 @@
 }
 
 body{
-    background-color: rgb(172, 242, 184);
+    background-color: rgb(189, 232, 197);
 }
 
 #db{
@@ -39,4 +39,8 @@ body{
     height: 30px;
   text-align: center;
   
+}
+
+#sd{
+    color: yellow;
 }

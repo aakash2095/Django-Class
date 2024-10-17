@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<div class="crud-OPERATION">
+    <h1 id="Sd">CRUD OPERATION</h1>
+</div>
+<div class="update-form">
+    <form action="" method='POST'>
+        {% csrf_token %}
+        {{mf.as_p}}
+        <input type="submit" value="Update">
+    </form>
+    <a href='{% url "base" %}'><button>Database</button></a>
+</div>
+
+
+{% endblock content %}
