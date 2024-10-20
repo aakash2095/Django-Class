@@ -1,16 +1,28 @@
 {% extends "core/base.html" %}
 {% block content %}
 
-<div class="crud-OPERATION">
-    <h1 id="Sd">CRUD OPERATION</h1>
-</div>
-<div class="update-form">
-    <form action="" method='POST'>
-        {% csrf_token %}
-        {{mf.as_p}}
-        <input type="submit" value="Update">
-    </form>
-    <a href='{% url "base" %}'><button>Database</button></a>
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center mt-5">
+        <div class="col-md-4">
+            <h1 id='dt'>Update YOUR DETAILS</h1>
+            <div class="form-control">
+                <form action="" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    {{ mf }}
+                    <input type="submit" value="Update" class="btn btn-danger mt-4">
+                </form>
+                <a href="{% url 'base' %}" class="d-inline">
+                    <button type="button" class="btn btn-warning mt-4 ">Database</button>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
 

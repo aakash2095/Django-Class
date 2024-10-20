@@ -1,7 +1,55 @@
-{% extends "core/index.html.html" %}
-
+{% extends "core/index.html" %}
 
 {% block content %}
+<h1>crud</h1>
+
+<form action="" method='POST'>
+    {% csrf_token %}
+    {{mf}}
+    <input type="submit" id='submit'>
+</form>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>  
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for m in marvel  %}
+        <th scope="row">{{m.id}}</th>
+        <td>{{m.name}}</td>
+        <td>{{m.email}}</td>
+        <form action="{% url "delete" m.id %}" method="POST" class="d-inline">
+            {% csrf_token %}
+            <input type="submit" value='Delete' class='btn btn-danger'>
+            <a href="{% url "update" m.id %}"><button>upate</button></a>
+        </form>
+
+
+        </form>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {% endblock content %}
