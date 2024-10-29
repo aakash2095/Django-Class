@@ -1,0 +1,37 @@
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#searchbtn{
+    border: none;
+    color: black;
+    
+}
+
+#searchbar{
+    border-radius: 50px;
+}
+
+
+#logo{
+    font-weight: bolder;
+    color: red;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+
+#navbarbtns{
+    color: black;
+}
+
+#navbarbtns:hover{
+    color: red;
+    border: 1ppx solid red;
+   transform: scale(1.03);
+  
+}
