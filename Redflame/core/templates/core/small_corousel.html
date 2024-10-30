@@ -1,0 +1,160 @@
+{% load static %}
+
+<style>
+    #smallcard{
+        height: 700px;
+       width: 150px;
+        margin-right: 100px;
+        
+    }
+    .carousel-margin {
+        margin-right: 50px !important; 
+    }
+    
+    #smallcard:hover {
+        transform: scale(1.04);
+        transition: transform 0.3s ease-out;
+    }
+
+    .item {
+        opacity: 0; 
+        transition: opacity 0.2s ease-in-out; 
+    }
+    
+    .active {
+        opacity: 1; 
+    }
+    
+    
+    #featureitem{
+        color: rgb(133, 117, 117);
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-top: 50px;
+        margin-left: 120px;
+    }
+    
+    #classy{
+        color: black;
+        font-family:serif;
+        margin-left: 122px;
+        margin-right: 100px;
+        
+    }
+    
+    #line{
+     margin-left: 122px;
+     margin-right: 100px;
+     color: black;
+    }
+    
+    .oneside{
+        text-decoration: none;
+    }
+    
+    #shy{
+        margin-left: 122px;
+        text-decoration: none;
+        display: inline-block;
+        color: black;
+        font-family: serif;
+    }
+    #arrow-icon {
+        margin-left: 440px; 
+        font-size: 15px; 
+        vertical-align: middle; 
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: black;
+    }
+    
+    #arrowi{
+        margin-left: 300px; 
+        font-size: 15px; 
+        vertical-align: middle; 
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: black;
+    }
+    
+    #arrowii{
+        margin-left: 415px; 
+        font-size: 15px; 
+        vertical-align: middle; 
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: black;
+    }
+    
+    
+    
+    #shy:hover{
+        transform: scale(1.05);
+        transition: transform 0.2s ease-in-out;
+        color: red;
+    }
+    
+    #arrowii:hover{
+        transform: scale(1.10);
+        transition: transform 0.5s ease-in-out;
+        color: red;
+       
+    }
+    
+    #arrow-icon:hover{
+        transform: scale(1.10);
+        transition: transform 0.5s ease-in-out;
+        color: red;
+    }
+    
+    #arrowi:hover{
+        transform: scale(1.10);
+        transition: transform 0.5s ease-in-out;
+        color: red;
+       
+    }
+    
+</style>
+<div class="row" style="background-color: rgb(250, 246, 246)">
+              
+    <div class="col-md-6">
+      <h5 id="featureitem" style="color: rgb(133, 117, 117); font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; margin-top: 50px; margin-left: 120px;">FEATURED ITEMS</h5>
+      
+      <h2 id="classy" style="color: black;  font-family:serif; margin-left: 122px; margin-right: 100px;">Bold, classy, on-trend and a must-have for your wardrobe!</h2>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="inside">
+      <hr id="line" style=" margin-left: 122px; margin-right: 100px; color: black;">
+      <a href="" class="oneside" style=" text-decoration: none;"><h5 id="shy" style="  margin-left: 122px; text-decoration: none; display: inline-block; color: black;  font-family: serif;">Shirts</h5> <i class="bi bi-arrow-up-right" id="arrow-icon" style=" margin-left: 440px;    font-size: 15px;     vertical-align: middle;     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;    color: black;"></i></a>
+      <hr id="line" style=" margin-left: 122px; margin-right: 100px; color: black;">
+      <a href="" class="oneside" style=" text-decoration: none;"><h5 id="shy" style="  margin-left: 122px; text-decoration: none; display: inline-block; color: black;  font-family: serif;">4-Way Strech Trousers</h5> <i class="bi bi-arrow-up-right" id="arrowi" style="margin-left: 300px;     font-size: 15px;    vertical-align: middle;    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;   color: black;"></i></a>
+      <hr id="line" style=" margin-left: 122px; margin-right: 100px; color: black;">
+      <a href="" class="oneside" style=" text-decoration: none;"><h5 id="shy" style="  margin-left: 122px; text-decoration: none; display: inline-block; color: black;  font-family: serif;">T-Shirts</h5> <i class="bi bi-arrow-up-right" id="arrowii" style="margin-left: 415px;    font-size: 15px;    vertical-align: middle;     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;    color: black;"></i></a>
+      <hr id="line">
+    </div>
+  </div>
+  <!--asset/images/front-view-sad-boy-holding-ball-school.jpg-->
+  
+      <div class="col-md-5 carousel-margin"> <!-- Apply custom class -->
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active" id="active">
+                    <img src="{% static "core/images/portrait-young-man-with-hat-using-mobile.jpg" %}" class="d-block w-100" alt="REDFLAME" id="smallcard" style="  height: 700px;   width: 150px;    margin-right: 100px;">
+                </div>
+                <div class="carousel-item" id="item">
+                    <img src="{% static "core/images/front-view-sad-boy-holding-ball-school.jpg" %}" class="d-block w-100" alt="REDFLAME" id="smallcard" style="  height: 700px;   width: 150px;    margin-right: 100px;">
+                </div>
+                <div class="carousel-item" id="item">
+                  <img src="{% static "core/images/close-up-portrait-man-shirt-mockup.jpg" %}" class="d-block w-100" alt="REDFLAME" id="smallcard" style="  height: 700px;   width: 150px;    margin-right: 100px; ">
+              </div>
+                
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+  </div>
