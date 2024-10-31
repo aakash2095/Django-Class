@@ -270,3 +270,195 @@ body {
     color: deeppink;
    
 }
+
+/*first card*/
+#sbc{
+    color: black;
+    font-weight: 550;
+    margin-left: 650px;
+    justify-content: center;
+    align-items: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+#shortsleeves{
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+    margin-left: 79px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+#tshirts{
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+    margin-left: 105px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#cargo{
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+    margin-left: 73px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+}
+
+#shorts{
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+    margin-left: 115px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+}
+
+/*popular items*/
+
+
+#popularitems{
+    margin-left: 120px;
+    font-family: serif;
+
+}
+
+#all{
+    margin-left: 120px;
+    text-decoration: none;
+    border: 1px solid black;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding-left: 10px;
+    padding-right:10px ;
+   border: none;
+    font-size:medium;
+
+    
+}
+
+#shirts{
+    margin-left: 4px; 
+    text-decoration: none;
+    border: 1px solid black;
+    background-color: rgb(224, 219, 219);
+    padding-left: 10px;
+    padding-right:10px ;
+border: none;
+    font-size:medium;
+    
+    color: rgb(0, 0, 0);
+
+}
+
+#shirts:active {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    transform: translateY(4px);
+}
+
+#ttshirts{
+    margin-left: 4px; 
+    text-decoration: none;
+    border: 1px solid black;
+    background-color: rgb(224, 219, 219);
+    padding-left: 10px;
+    padding-right:10px ;
+ border: none;
+    font-size:medium;
+    
+    color: rgb(0, 0, 0);
+}
+#ttshirts:active {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    transform: translateY(4px);
+}
+
+#tro{
+    margin-left: 4px; 
+    text-decoration: none;
+    border: 1px solid black;
+    background-color: rgb(224, 219, 219);
+    padding-left: 10px;
+    padding-right:10px ;
+ border: none;
+    font-size:medium;
+    
+    color: rgb(0, 0, 0);
+}
+#tro:active {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    transform: translateY(4px);
+}
+    
+
+/*icon*/
+
+
+.icon-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 150px;
+    margin-right: 150px;
+    gap: 20px; /* Space between icons */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.icon-item {
+    text-align: center;
+    flex: 1; /* Makes items grow evenly */
+    min-width: 120px; /* Ensures icons don't get too small */
+}
+
+.icon-item img {
+    width: 50px;
+    height: 50px;
+}
+
+.icon-item h3 {
+    margin-top: 8px;
+    font-size: 14px;
+    color: black;
+}
+
+
+/*register*/
+
+
+.register-page {
+    background-image: url('asset/trending/black-man-wearing-suit-isolated_23-2151808530\ png.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    color: rgb(0, 0, 0);
+}
+.form-container {
+    box-shadow: 2px 2px 3px 0px rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 20px;
+    background: rgb(0, 0, 0);
+}
+.navbar {
+    background-color: transparent
+}
+.navbar-brand h1 {
+    color: white;
+    font-weight: 500;
+}
+.btn-outline-success {
+    border-color: #28a745;
+    color: #28a745;
+}
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+}
+a {
+    color: rgb(0, 0, 0);
+}
+
