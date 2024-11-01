@@ -18,3 +18,8 @@ def register(request):
         rf=Registerform()
         return render(request,'core/register.html',{'rf':rf})
 
+def login(request):
+    return render(request,'core/login.html')
+
+def profile(request):
+    return render (request,'core/profile.html')

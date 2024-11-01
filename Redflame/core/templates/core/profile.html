@@ -1,23 +1,49 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RedFlame - Profile</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="asset/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="{% static "core/css/bootstrap.min.css" %}">
     <link rel="icon" type="image/png" sizes="16x16" href="asset/images/ho.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "core/css/core.css" %}">
 </head>
+<style> 
+    body.profile-page {
+        background-image: url('https://img.freepik.com/free-photo/creative-wallpaper-with-grey-cubes_23-2148811493.jpg?t=st=1729620072~exp=1729623672~hmac=05e3984d1f86ef20aba6f0d89e4d1708a33cd379700a1b6b51014310ef801f4c&w=900'); /* Replace with your image */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        height: 100vh;
+        margin: 0;
+        color: #fff;
+    }
+    
+    /* Form container styling */
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: #333;
+    }
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+</style>
 <body class="profile-page">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{% url "index" %}">
                     <h2><i class="bi bi-house"></i></h2>
                 </a>
                 <div class="d-flex align-items-center">
-                    <a href="index.html" class="btn btn-outline-light me-3">Logout</a>
+                    <a href="" class="btn btn-outline-light me-3">Logout</a>
                 </div>
             </div>
         </nav>
