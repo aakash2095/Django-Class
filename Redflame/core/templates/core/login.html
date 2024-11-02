@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>RedFlame | Login</title>
     <link rel="stylesheet" href="{% static "core/css/bootstrap.min.css" %}">
     <link rel="icon" type="image/png" sizes="16x16" href="asset/images/ho.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -65,9 +65,22 @@
                 <div class="form-container">
                     <h2 class="text-center" style="font-weight: 600;">LOGIN</h2>
                     <form action="" method='POST' novalidate>
-                        
+
+                        {% if rf.non_field_errors %}
+                        {% for error in rf.non_field_errors %}
+                            {{error}}
+                        {% endfor %}
+                        {% endif %}
+
+
+                        {% csrf_token %}
+                        {% for r in rf %}
+                         {{r.label_tag}}   {{r}}   {{r.errors|striptags}}
+                         {% endfor %}
+                        <br>
+                         <input type="submit" value="submit" class="btn btn-danger justify-content-center">
                         <p class="text-center mt-3">
-                            <strong>New user?</strong> <a href="register.html" style="text-decoration: none;">Register</a>
+                            <strong>New user?</strong> <a href="{% url "register" %}" style="text-decoration: none;">Register</a>
                         </p>
                     </form>
                 </div>

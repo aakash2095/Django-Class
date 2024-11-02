@@ -1,0 +1,43 @@
+{% extends "core/base.html" %}
+{% block title %} New Arrivals{% endblock title %}
+{% load static %}
+
+
+
+
+
+
+{% block content %}
+
+    
+
+
+    <br>
+  <!--card-->
+  
+  <div class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="text-center">
+      <h4 style="font-family: cursive;">New Arrival</h4>
+    </div>
+  </div>
+  <hr class="ms-5 me-5">
+
+  <div class="container">
+    <div class="row g-0 justify-content-start">
+        <div class="col-md-3 mb-4" style="padding-left: 20px;">
+            <div class="card product-card">
+                <a href="#">
+                    <img src="{% static "core/images/ncard1.webp" %}" alt="" class="card-img-top" height="480px">
+                </a>
+                <div class="card-body product-info">
+                    <p class="product-title">Black Relaxed Fit Korean Trousers</p>
+                    <p class="product-price">INR &#8377 1,799</p>
+                </div>
+                
+                  <pre>  S     M     XL     XXL       <i class="bi bi-heart-fill" style="color: red;"></i> </pre>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock content %}
