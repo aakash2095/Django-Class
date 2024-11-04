@@ -75,10 +75,12 @@
 
                         {% csrf_token %}
                         {% for r in rf %}
-                         {{r.label_tag}}   {{r}}   {{r.errors|striptags}}
+                         {{r.label_tag}}  <br> {{r}}  <br> {{r.errors|striptags}}
                          {% endfor %}
-                        <br>
-                         <input type="submit" value="submit" class="btn btn-danger justify-content-center">
+                        
+                        <div class="text-center">
+                            <input type="submit" value="submit" class="btn btn-outline-danger register-button me-2">   
+                    </div>
                         <p class="text-center mt-3">
                             <strong>New user?</strong> <a href="{% url "register" %}" style="text-decoration: none;">Register</a>
                         </p>
