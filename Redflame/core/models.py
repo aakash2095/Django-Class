@@ -41,6 +41,35 @@ class Userdetails(models.Model):
         ('PY', 'Puducherry'),
     ]
 
-    user = models.models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name=models.CharField(max_length=100)
-    
+    address=models.CharField(max_length=100)
+    city=models.CharField(max_length=100)
+    state=models.CharField(max_length=2,choices=STATE_CHOICES)
+    pincode=models.IntegerField(
+        default=0,
+        blank=True,
+        null=True
+    )
+
+    def __str__(self):
+        return str(self.id)
+
+class upperwear(models.Model):
+
+    CATEGORY_CHOICES = [
+        ('SHIRTS','shirts'),
+        ('T_SHIRTS','t-shirts'),
+        ('SWEATSHIRTS','sweatshirts')
+    ]
+
+    name=models.CharField(max_length=100)
+    category = models.CharField(max_length=30,choices=CATEGORY_CHOICES)
+    short_d = models.CharField(max_length=400)
+    desc = models.TextField()
+    original_price=models.IntegerField()
+    discounted_price=models.IntegerField()
+    upperwear_img = models.ImageField(upload_to='upperwear_img')
+
+    def __str__(self):
+        return str(self.name)

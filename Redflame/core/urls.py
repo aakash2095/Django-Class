@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+#------ To incude Media file ---------------
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('',views.index,name='index'),
@@ -10,4 +13,11 @@ urlpatterns = [
     path('changepassword/',views.changepassword, name="changepassword"),
     path('trending/',views.trending,name='trending'),
     path('newarrival/',views.newarrival,name='newarrival'),
+
+
 ]
+
+
+#--------- THis is will add file to media folder -----------
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
