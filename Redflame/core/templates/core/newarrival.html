@@ -24,20 +24,26 @@
 
   <div class="container">
     <div class="row g-0 justify-content-start">
+      {% for r in rf  %}
         <div class="col-md-3 mb-4" style="padding-left: 20px;">
-            <div class="card product-card">
-                <a href="#">
-                    <img src="{% static "core/images/ncard1.webp" %}" alt="" class="card-img-top" height="480px">
-                </a>
-                <div class="card-body product-info">
-                    <p class="product-title">Black Relaxed Fit Korean Trousers</p>
-                    <p class="product-price">INR &#8377 1,799</p>
-                </div>
-                
-                  <pre>  S     M     XL     XXL       <i class="bi bi-heart-fill" style="color: red;"></i> </pre>
-                
+          <div class="card product-card">
+            <a href="{% url "bigcard" r.id %}">
+              <img src="{{r.upperwear_img.url}}" alt="" class="card-img-top" height="480px">
+            </a>
+            <div class="card-body product-info">
+              <p class="product-title">{{r.short_d}}</p>
+              <p class="product-price">INR &#8377 {{r.discounted_price}}   <s style="color:red;">{{r.original_price}}</s></p>
             </div>
+            
+            <pre>  S     M     XL     XXL       <i class="bi bi-heart-fill" style="color: red;"></i> </pre>
+            
+          </div>
         </div>
+        {% endfor %}
+        <div class="text-center">
+        <button class="btn btn-outline-danger" type="submit"> <a href="" style="color: rgb(0, 0, 0); text-decoration: none;">View More></a></button>
+        </div>
+        <br><br><br>
     </div>
 </div>
     {% endblock content %}

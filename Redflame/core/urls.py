@@ -13,6 +13,7 @@ urlpatterns = [
     path('changepassword/',views.changepassword, name="changepassword"),
     path('trending/',views.trending,name='trending'),
     path('newarrival/',views.newarrival,name='newarrival'),
+    path('bigcard/<int:id>/',views.bigcard,name='bigcard'),
 
 
 ]

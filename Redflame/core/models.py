@@ -73,3 +73,15 @@ class upperwear(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+class new_arrival(models.Model):
+        name=models.CharField(max_length=100)
+        short_d = models.CharField(max_length=400)
+        desc = models.TextField()
+        original_price=models.IntegerField()
+        discounted_price=models.IntegerField()
+        upperwear_img = models.ImageField(upload_to='new_arrival_img')
+
+        def __str__(self):
+            return str(self.name)

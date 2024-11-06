@@ -1,0 +1,116 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %} {% endblock title %}
+
+
+
+{% block content %}
+
+<!-- Order Section -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Product Image -->
+        <div class="col-md-6">
+            <img src="{{r.upperwear_img.url}}" alt="Dark Blue Stitchless Polo T-Shirt" class="img-fluid" height="480px">
+        </div>
+        
+        <!-- Order Form -->
+        <div class="col-md-6">
+            <h3 style="font-family:sans-serif; font-size: 2.5rem;">{{r.short_d}}</h3>
+            <p class="product-price">Regular Price: INR &#8377; {{r.discounted_price}} (incl. of all taxes)</p>
+
+                <!-- Discount Details -->
+                <div class="mb-4">
+                    <h5> <strong>AVAILABLE OFFERS :</strong></h5>
+                    <br>
+                    <ul>
+                        <li>Get this for <strong>INR 1,259</strong> (Flat 10% Off on your first purchase). <br>
+                            <small>Download the app and use <b>Code: APP10</b></small>
+                        </li>
+                        <br>
+                        <li>Get this for <strong>INR 1,119</strong> (Flat 20% Off on minimum purchase of 4599/-). <br>
+                            <small>Use <b>Code: FLAT20</b></small>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+                
+                <form action="order_confirmation.html" method="POST">
+                    <!-- Size Selection -->
+                    <div class="mb-3">
+                        <label class="form-label d-block mb-2">SELECT A SIZE :</label>
+                        <div class="d-flex gap-1" role="group" aria-label="Size Selection">
+                            <input type="radio" class="btn-check" name="size" id="sizeS" value="S" required>
+                            <label class="btn btn-outline-secondary" for="sizeS">S</label>
+                            
+                            <input type="radio" class="btn-check" name="size" id="sizeM" value="M">
+                            <label class="btn btn-outline-secondary" for="sizeM">M</label>
+                            
+                            <input type="radio" class="btn-check" name="size" id="sizeL" value="L">
+                            <label class="btn btn-outline-secondary" for="sizeL">L</label>
+                            
+                            <input type="radio" class="btn-check" name="size" id="sizeXL" value="XL">
+                            <label class="btn btn-outline-secondary" for="sizeXL">XL</label>
+                            
+                            <input type="radio" class="btn-check" name="size" id="sizeXXL" value="XXL">
+                            <label class="btn btn-outline-secondary" for="sizeXXL">XXL</label>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <!-- Quantity Selection -->
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">SELECT QUANTITY:</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" required>
+                    </div>
+                    
+                    <!-- Shipping Information -->
+                    <h5 class="mt-4"><strong>SHIPPING INFORMATION</strong> </h5>
+                    <div class="mb-3">
+                        <label for="fullname" class="form-label">Full Name:</label>
+                        <input type="text" class="form-control" id="fullname" name="fullname" required placeholder="*****">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Shipping Address:</label>
+                        <input type="text" class="form-control" id="address" name="address" required placeholder="*****">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number:</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required >
+                    </div>
+
+                    <!-- Payment Method -->
+                    <h5 class="mt-4"><strong>PAYMENT METHOD</strong> </h5>
+                    <div class="mb-3">
+                        <select class="form-select" id="paymentMethod" name="paymentMethod" required>
+                            <option value="COD" selected>Cash on Delivery (COD)</option>
+                            <option value="Online">Online Payment</option>
+                            <option value="UPI">UPI</option>
+                            <option value="CreditCard">Credit/Debit Card</option>
+                            <option value="NetBanking">Net Banking</option>
+                            <option value="Wallet">Wallets (Paytm, PhonePe, etc.)</option>
+                        </select>
+                    </div>
+                    
+                    
+                    <!-- HTML !-->
+                    <!-- HTML !-->
+                    
+                    
+                    
+                    
+                    <!-- Submit Button -->
+                    <div class="d-flex justify-content-center mt-4">
+                        <button class="button-89" role="button">Place Order</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    
+   {% endblock content %}
+    
+    

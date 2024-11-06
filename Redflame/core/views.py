@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import Registerform, Authenticateform , userchange ,AdminProfileForm , changepasswordform
 from django.contrib.auth import authenticate, login, logout , update_session_auth_hash
 from django.contrib import messages
+from . models import new_arrival
 
 def index(request):
     return render(request, 'core/index.html')
@@ -88,4 +89,9 @@ def trending(request):
     return render(request,'core/trending.html')
 
 def newarrival(request):
-    return render (request,'core/newarrival.html')
+    rf=new_arrival.objects.all()
+    return render (request,'core/newarrival.html',{'rf':rf})
+
+def bigcard(request,id):
+    rf=new_arrival.objects.get(pk=id)
+    return render(request,'core/bigcard.html',{'rf':rf})
