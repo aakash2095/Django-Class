@@ -60,7 +60,10 @@ class upperwear(models.Model):
     CATEGORY_CHOICES = [
         ('SHIRTS','shirts'),
         ('T_SHIRTS','t-shirts'),
-        ('SWEATSHIRTS','sweatshirts')
+        ('SWEATSHIRTS','sweatshirts'),
+        ('TROUSERS','trousers'),
+        ('SHORTS','shorts'),
+        ('TRENDING','trending')
     ]
 
     name=models.CharField(max_length=100)
@@ -88,9 +91,9 @@ class new_arrival(models.Model):
         
 
 
-class cart(models.Model):
+class CartUpperwear(models.Model):
      user = models.ForeignKey(User, on_delete=models.CASCADE)
-     product=models.ForeignKey(User, on_delete=models.CASCADE)
+     product=models.ForeignKey(upperwear, on_delete=models.CASCADE)
      quantity=models.PositiveIntegerField(default=1)
 
 

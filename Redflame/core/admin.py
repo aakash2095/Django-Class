@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Userdetails,upperwear,new_arrival,cart
+from . models import Userdetails,upperwear,new_arrival,CartUpperwear
 # Register your models here.
 
 
@@ -16,6 +16,6 @@ class new_arrival_admin(admin.ModelAdmin):
     list_display=['id','name','short_d','desc','original_price','discounted_price']
 
 
-@admin.register(cart)
+@admin.register(CartUpperwear)
 class cart_admin(admin.ModelAdmin):
     list_display=['id','user','product','quantity']
