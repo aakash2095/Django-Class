@@ -14,10 +14,13 @@ urlpatterns = [
     path('trending/',views.trending,name='trending'),
     path('newarrival/',views.newarrival,name='newarrival'),
     path('bigcard/<int:id>/',views.bigcard,name='bigcard'),
-    path('shirtcard/<int:id>/',views.shirtcard,name='shirtcard'),
     path('shirt/',views.shirt,name='shirt'),
-    path('showcart/',views.showcart,name='showcart')
-
+    path('Tshirt/',views.Tshirt,name='Tshirt'),
+    path('showcart/',views.showcart,name='showcart'),
+    path('add_to_cart/<int:id>/',views.add_to_cart,name='add_to_cart'),
+    path('delete_cart/<int:id>/',views.delete_cart,name='delete_cart'),
+    path('add_item/<int:id>/',views.add_item,name='add_item'),
+    
 
 ]
 

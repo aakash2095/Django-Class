@@ -55,9 +55,11 @@ class Userdetails(models.Model):
     def __str__(self):
         return str(self.id)
 
-class upperwear(models.Model):
 
-    CATEGORY_CHOICES = [
+class new_arrival(models.Model):
+        
+        CATEGORY_CHOICES = [
+        ('NEWARRIVAL','newarrival'),
         ('SHIRTS','shirts'),
         ('T_SHIRTS','t-shirts'),
         ('SWEATSHIRTS','sweatshirts'),
@@ -65,24 +67,11 @@ class upperwear(models.Model):
         ('SHORTS','shorts'),
         ('TRENDING','trending')
     ]
-
-    name=models.CharField(max_length=100)
-    category = models.CharField(max_length=30,choices=CATEGORY_CHOICES)
-    short_d = models.CharField(max_length=400)
-    desc = models.TextField()
-    original_price=models.IntegerField()
-    discounted_price=models.IntegerField()
-    upperwear_img = models.ImageField(upload_to='upperwear_img')
-
-    def __str__(self):
-        return str(self.name)
-
-
-class new_arrival(models.Model):
         name=models.CharField(max_length=100)
+        category = models.CharField(max_length=30,choices=CATEGORY_CHOICES)
         short_d = models.CharField(max_length=400)
         desc = models.TextField()
-        original_price=models.IntegerField()
+        original_price=models.IntegerField(default=1000)
         discounted_price=models.IntegerField()
         upperwear_img = models.ImageField(upload_to='new_arrival_img')
 
@@ -93,10 +82,12 @@ class new_arrival(models.Model):
 
 class CartUpperwear(models.Model):
      user = models.ForeignKey(User, on_delete=models.CASCADE)
-     product=models.ForeignKey(upperwear, on_delete=models.CASCADE)
+     product=models.ForeignKey(new_arrival, on_delete=models.CASCADE)
      quantity=models.PositiveIntegerField(default=1)
 
 
 
      def __str__(self):
           return str(self.id)
+     
+

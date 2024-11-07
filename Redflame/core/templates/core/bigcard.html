@@ -81,9 +81,17 @@
                     <!-- Submit Button -->
                     <div class="text-center">
                         <button class="btn btn-outline-dark w-100 " type="submit" style="height: 60px; font-weight: bolder; font-size:1.3rem;">
-                            <a href="" style="color: rgb(0, 0, 0); text-decoration: none;">Add to Cart <i class="bi bi-bag-fill"></i></a>
+                            <a href="{% url "add_to_cart" rf.id %}" style="color: rgb(0, 0, 0); text-decoration: none;">Add to Cart <i class="bi bi-bag-fill"></i></a>
                         </button>
                     </div>
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
                     <br>
                     <div class="text-center">
                         <button class="btn btn-outline-dark w-100 " type="submit" style="height: 60px; font-weight: bolder; font-size:1.5rem;">

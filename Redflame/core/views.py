@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect ,get_object_or_404
 from .forms import Registerform, Authenticateform , userchange ,AdminProfileForm , changepasswordform
 from django.contrib.auth import authenticate, login, logout , update_session_auth_hash
 from django.contrib import messages
-from . models import new_arrival,upperwear
+from . models import new_arrival,CartUpperwear
 
 def index(request):
     return render(request, 'core/index.html')
@@ -91,24 +91,57 @@ def trending(request):
     return render(request,'core/trending.html')
 
 def newarrival(request):
-    rf=new_arrival.objects.all()
+    rf=new_arrival.objects.filter(category='NEWARRIVAL')
     return render (request,'core/newarrival.html',{'rf':rf})
+
+def shirt(request):
+    rf=new_arrival.objects.filter(category='SHIRTS')
+    return render (request,'core/shirt.html',{'rf':rf})
+
+
+def Tshirt(request):
+    rf=new_arrival.objects.filter(category='T_SHIRTS')
+    return render (request,'core/Tshirt.html',{'rf':rf})
+    
 
 def bigcard(request,id):
     rf=new_arrival.objects.get(pk=id)
     return render(request,'core/bigcard.html',{'rf':rf})
 
-def shirt(request):
-    rf=upperwear.objects.all()
-    return render (request,'core/shirt.html',{'rf':rf})
 
-def shirtcard(request,id):
-    mf=upperwear.objects.get(pk=id)
-    return render (request,'core/shirtcard.html',{'mf':mf})
+
 
 
 
 ####################  ADD TO CART #########################
 
+
+
+
+def add_to_cart(request, id):
+    na = new_arrival.objects.get(pk=id)  
+    user = request.user
+    CartUpperwear(user=user, product=na).save()
+    messages.success(request,'ADDED TO CART!!')
+    return redirect('bigcard', id)
+
+
 def showcart(request):
-    return render (request,'core/showcart.html')
+    ca=CartUpperwear.objects.filter(user=request.user)
+    return render (request,'core/showcart.html',{'ca':ca})
+
+def delete_cart(request, id):
+    ca = CartUpperwear.objects.get(pk=id) 
+    ca.delete()
+    return redirect('showcart') 
+
+
+def add_item(request,id):
+    product =get_object_or_404(CartUpperwear,pk=id)
+    if product.quantity>1:
+        product.quantity+=1
+        product.save()
+    return redirect('showcart')
+
+
+
