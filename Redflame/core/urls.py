@@ -15,7 +15,8 @@ urlpatterns = [
     path('newarrival/',views.newarrival,name='newarrival'),
     path('bigcard/<int:id>/',views.bigcard,name='bigcard'),
     path('shirtcard/<int:id>/',views.shirtcard,name='shirtcard'),
-    path('shirt/',views.shirt,name='shirt')
+    path('shirt/',views.shirt,name='shirt'),
+    path('showcart/',views.showcart,name='showcart')
 
 
 ]

@@ -110,3 +110,5 @@ def shirtcard(request,id):
 
 ####################  ADD TO CART #########################
 
+def showcart(request):
+    return render (request,'core/showcart.html')
