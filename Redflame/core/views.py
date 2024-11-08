@@ -138,9 +138,8 @@ def delete_cart(request, id):
 
 def add_item(request,id):
     product =get_object_or_404(CartUpperwear,pk=id)
-    if product.quantity>1:
-        product.quantity+=1
-        product.save()
+    product.quantity +=1
+    product.save()
     return redirect('showcart')
 
 
