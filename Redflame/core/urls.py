@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/',views.log_out, name="logout"),
     path('profile',views.profile,name='profile'),
     path('changepassword/',views.changepassword, name="changepassword"),
+    path('forgotpassword/',views.forgotpassword,name='forgotpassword'),
     path('trending/',views.trending,name='trending'),
     path('newarrival/',views.newarrival,name='newarrival'),
     path('bigcard/<int:id>/',views.bigcard,name='bigcard'),

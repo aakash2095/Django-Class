@@ -3,6 +3,7 @@ from .forms import Registerform, Authenticateform , userchange ,AdminProfileForm
 from django.contrib.auth import authenticate, login, logout , update_session_auth_hash
 from django.contrib import messages
 from . models import new_arrival,CartUpperwear
+from django.contrib.auth.forms import SetPasswordForm
 
 def index(request):
     return render(request, 'core/index.html')
@@ -85,6 +86,21 @@ def changepassword(request):
         return redirect('login')
 
     
+def forgotpassword(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            pf = SetPasswordForm(request.user,request.POST)
+            if pf.is_valid():
+                pf.save()
+                update_session_auth_hash(request, pf.user)
+                return redirect('profile')
+        else:
+            pf = SetPasswordForm(user=request.user)  
+        return render(request, 'core/forgotpassword.html', {'pf': pf})  
+    else:
+        return redirect('login')
+        
+
 ####################  FETCHING IMAGE THROUGH DATABASE AND REDIRECT TO DETAILS PAGE #########################
 
 def trending(request):
@@ -128,7 +144,12 @@ def add_to_cart(request, id):
 
 def showcart(request):
     ca=CartUpperwear.objects.filter(user=request.user)
-    return render (request,'core/showcart.html',{'ca':ca})
+    total=0
+    Delivery_charge = 149 
+    for c in ca :
+        total+=(c.product.discounted_price*c.quantity)
+    final_price = total+Delivery_charge
+    return render (request,'core/showcart.html',{'ca':ca,'total':total,'final_price':final_price})
 
 def delete_cart(request, id):
     ca = CartUpperwear.objects.get(pk=id) 
