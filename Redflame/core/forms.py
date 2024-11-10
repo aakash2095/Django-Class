@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,PasswordChangeForm,UserChangeForm
 from django.contrib.auth.models import User
+from . models import Userdetails
 
 class Registerform(UserCreationForm):
     password1 = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class': 'form-control'}))
@@ -48,4 +49,16 @@ class AdminProfileForm(UserChangeForm):
                   'email':forms.TextInput(attrs={'class':'form-control'}),
                   'first_name':forms.TextInput(attrs={'class':'form-control'}),
                   'last_name':forms.TextInput(attrs={'class':'form-control'}),
+                  }
+        
+class Userform(forms.ModelForm):
+    class Meta:
+        model=Userdetails
+        fields=['name','address','city','state','pincode']
+        labels ={'name':'Full Name'}
+        widgets= {'name':forms.TextInput(attrs={'class':'form-control'}),
+                  'address':forms.TextInput(attrs={'class':'form-control'}),
+                  'city':forms.TextInput(attrs={'class':'form-control'}),
+                  'state':forms.Select(attrs={'class':'form-control'}),
+                  'pincode':forms.NumberInput(attrs={'class':'form-control'}),
                   }

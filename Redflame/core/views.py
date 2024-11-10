@@ -170,3 +170,7 @@ def delete_item(request,id):
         product.save()
     return redirect('showcart')
 
+########################## ADDRESS PAGE #########################
+
+def address(request):
+    return render(request,'core/address.html')
