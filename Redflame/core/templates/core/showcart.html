@@ -51,7 +51,7 @@
         </a>
         </div>
         <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-          <h5 class="mb-0">INR &#8377 {{c.product.discounted_price}}</h5>
+          <h5 class="mb-0">INR &#8377 {{c.price_and_quantity_total}}</h5>
         </div>
         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
           <a href="{% url "delete_cart" c.id %}" class="text-danger"><i class="bi bi-trash3-fill"></i></a>
@@ -74,7 +74,7 @@
        <p>{{c.product.short_d}}</p>
        <div class="d-flex">
         <p class="me-5">Item: {{c.quantity}}</p>
-        <p>INR &#8377 <strong>{{c.discounted_price_and_quantity_total}}  </strong></p>
+        <p>INR &#8377 <strong>{{c.price_and_quantity_total}}  </strong></p>
     </div>
       </div>
      

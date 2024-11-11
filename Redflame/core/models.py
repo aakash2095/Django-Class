@@ -88,6 +88,11 @@ class CartUpperwear(models.Model):
 
 
      def __str__(self):
-          return str(self.id)
+        return str(self.id)
+     
+     @property
+     def price_and_quantity_total(self):
+        return self.product.discounted_price*self.quantity
+
      
 
