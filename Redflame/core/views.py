@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect ,get_object_or_404
-from .forms import Registerform, Authenticateform , userchange ,AdminProfileForm , changepasswordform
+from .forms import Registerform, Authenticateform , userchange ,AdminProfileForm , changepasswordform , Userform
 from django.contrib.auth import authenticate, login, logout , update_session_auth_hash
 from django.contrib import messages
-from . models import new_arrival,CartUpperwear
+from . models import new_arrival,CartUpperwear,Userdetails
 from django.contrib.auth.forms import SetPasswordForm
 
 def index(request):
@@ -173,4 +173,18 @@ def delete_item(request,id):
 ########################## ADDRESS PAGE #########################
 
 def address(request):
-    return render(request,'core/address.html')
+    if request.method == 'POST':
+        rf=Userform(request.POST)
+        if rf.is_valid():
+            user=request.user
+            name= rf.cleaned_data['name']
+            address= rf.cleaned_data['address']
+            city= rf.cleaned_data['city']
+            state= rf.cleaned_data['state']
+            pincode= rf.cleaned_data['pincode']
+            Userdetails(user=user,name=name,address=address,city=city,state=state,pincode=pincode).save()
+            return render('address')
+    else:
+        rf =Userform()
+        address = Userdetails.objects.filter(user=request.user)
+    return render(request,'core/address.html',{'rf':rf,'address':address})
