@@ -62,3 +62,4 @@ class Userform(forms.ModelForm):
                   'state':forms.Select(attrs={'class':'form-control'}),
                   'pincode':forms.NumberInput(attrs={'class':'form-control'}),
                   }
+        

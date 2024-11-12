@@ -67,12 +67,21 @@ class new_arrival(models.Model):
         ('SHORTS','shorts'),
         ('TRENDING','trending')
     ]
+        
+
+        SIZE_CHOICES = [
+        ('S', 'Small'),
+        ('M', 'Medium'),
+        ('L', 'Large'),
+        ('XL', 'Extra Large'),
+    ]
         name=models.CharField(max_length=100)
         category = models.CharField(max_length=30,choices=CATEGORY_CHOICES)
         short_d = models.CharField(max_length=400)
         desc = models.TextField()
         original_price=models.IntegerField(default=1000)
         discounted_price=models.IntegerField()
+        size = models.CharField(max_length=2, choices=SIZE_CHOICES,default='S')
         upperwear_img = models.ImageField(upload_to='new_arrival_img')
 
         def __str__(self):

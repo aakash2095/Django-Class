@@ -183,8 +183,19 @@ def address(request):
             state= rf.cleaned_data['state']
             pincode= rf.cleaned_data['pincode']
             Userdetails(user=user,name=name,address=address,city=city,state=state,pincode=pincode).save()
-            return render('address')
+            return redirect('showaddress')
     else:
         rf =Userform()
         address = Userdetails.objects.filter(user=request.user)
     return render(request,'core/address.html',{'rf':rf,'address':address})
+
+
+def delete_address(request,id):
+    if request.method == 'POST':
+        rf = Userdetails.objects.get(pk=id)
+        rf.delete()
+    return redirect('showaddress')
+
+def showaddress(request):
+    address = Userdetails.objects.filter(user=request.user)
+    return render(request,'core/showaddress.html',{'address':address})
