@@ -5,6 +5,13 @@ from django.contrib import messages
 from . models import new_arrival,CartUpperwear,Userdetails
 from django.contrib.auth.forms import SetPasswordForm
 
+
+from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
+import uuid
+from django.urls import reverse
+
+
 def index(request):
     return render(request, 'core/index.html')
 
@@ -144,12 +151,7 @@ def add_to_cart(request, id):
 
 def showcart(request):
     ca=CartUpperwear.objects.filter(user=request.user)
-    total=0
-    Delivery_charge = 149 
-    for c in ca :
-        total+=(c.product.discounted_price*c.quantity)
-    final_price = total+Delivery_charge
-    return render (request,'core/showcart.html',{'ca':ca,'total':total,'final_price':final_price})
+    return render (request,'core/showcart.html',{'ca':ca})
 
 def delete_cart(request, id):
     ca = CartUpperwear.objects.get(pk=id) 
@@ -199,3 +201,46 @@ def delete_address(request,id):
 def showaddress(request):
     address = Userdetails.objects.filter(user=request.user)
     return render(request,'core/showaddress.html',{'address':address})
+
+###################################  CHECKOUT PAGE ####################################
+
+def checkout(request):
+    ca=CartUpperwear.objects.filter(user=request.user)
+    total=0
+    Delivery_charge = 149 
+    for c in ca :
+        total+=(c.product.discounted_price*c.quantity)
+        final_price = total+Delivery_charge
+    address=Userdetails.objects.filter(user=request.user)
+
+    ############################# PAYPAL CODE ######################
+
+
+    host = request.get_host()   # Will fecth the domain site is currently hosted on.
+   
+    paypal_checkout = {
+        'business': settings.PAYPAL_RECEIVER_EMAIL,   #This is typically the email address associated with the PayPal account that will receive the payment.
+        'amount': final_price,    #: The amount of money to be charged for the transaction. 
+        'item_name': 'Pet',       # Describes the item being purchased.
+        'invoice': uuid.uuid4(),  #A unique identifier for the invoice. It uses uuid.uuid4() to generate a random UUID.
+        'currency_code': 'USD',
+        'notify_url': f"http://{host}{reverse('paypal-ipn')}",         #The URL where PayPal will send Instant Payment Notifications (IPN) to notify the merchant about payment-related events
+        'return_url': f"http://{host}{reverse('paymentsuccess')}",     #The URL where the customer will be redirected after a successful payment. 
+        'cancel_url': f"http://{host}{reverse('paymentfailed')}",      #The URL where the customer will be redirected if they choose to cancel the payment. 
+    }
+
+    paypal_payment = PayPalPaymentsForm(initial=paypal_checkout)
+
+  #================= Paypal Code  End =====================
+
+
+    return render(request, 'core/checkout.html', {'ca': ca,'total':total,'final_price':final_price,'address':address,'paypal':paypal_payment})
+    
+def payment_success(request):
+    return render(request,'core/payment_success.html')
+
+
+def payment_failed(request):
+    return render(request,'core/payment_failed.html')
+
+

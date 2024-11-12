@@ -61,55 +61,16 @@
   </div>
   
   {% endfor %}
+  <div class="d-grid mt-3">
+    <a href="{% url "checkout" %}" class="btn btn-outline-dark btn-lg" style="font-weight: bolder;">
+      Proceed to Checkout <i class="bi bi-bag-fill"></i></a>      
+  </div>
+  </div>
+  </div>
 </section>
 
-<div class="container d-flex justify-content-center ">
-  <div class="card shadow p-4" style="width: 100%; ">
-      <h3 class="text-center mb-4">ORDER SUMMARY</h3>
-      <hr>
-      
-     {% for c in ca %}
-     <!-- Items List -->
-     <div class="d-flex justify-content-between">
-       <p>{{c.product.short_d}}</p>
-       <div class="d-flex">
-        <p class="me-5">Item: {{c.quantity}}</p>
-        <p>INR &#8377 <strong>{{c.price_and_quantity_total}}  </strong></p>
-    </div>
-      </div>
-     
-      {% endfor %}
-    <hr>
-
-      <!-- Subtotal -->
-      <div class="d-flex justify-content-between">
-          <p class="fw-semibold">Subtotal</p>
-          <p class="fw-semibold">INR &#8377 <strong>{{total}}  </strong></p>
-      </div>
-
-      <!-- Tax -->
-      <div class="d-flex justify-content-between">
-          <p>Platform Fee</p>
-          <p style="color:green;"><s>&#8377 49</s> Free</p>
-      </div>
-      <div class="d-flex justify-content-between">
-        <p>Shipping Fee</p>
-        <p>&#8377 149</p>
-    </div>
-
-      <!-- Total -->
-      <div class="d-flex justify-content-between">
-          <h5>Total</h5>
-          <h5>INR &#8377 <strong>{{final_price}}  </strong></h5>
-      </div>
 
       <!-- Checkout Button -->
-      <div class="d-grid mt-3">
-        <a href="checkout.html" class="btn btn-outline-dark btn-lg" style="font-weight: bolder;">
-          Proceed to Checkout <i class="bi bi-bag-fill"></i></a>      
-    </div>
-  </div>
-</div>
 
 <br><br><br>
 

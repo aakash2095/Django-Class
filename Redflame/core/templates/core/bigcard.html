@@ -1,6 +1,6 @@
 {% extends "core/base.html" %}
 {% load static %}
-{% block title %} {% endblock title %}
+{% block title %} Product{% endblock title %}
 
 
 
@@ -42,7 +42,7 @@
                     <div class="mb-3">
                         <label class="form-label d-block mb-2">SELECT A SIZE :</label>
                         <div class="d-flex gap-1" role="group" aria-label="Size Selection">
-                            <input type="radio" class="btn-check" name="size" id="sizeS" value="S" required>
+                            <input type="radio" class="btn-check" name="size" id="sizeS" value="S" >
                             <label class="btn btn-outline-secondary" for="sizeS">S</label>
                             
                             <input type="radio" class="btn-check" name="size" id="sizeM" value="M">
@@ -62,10 +62,7 @@
                     
                     
                     <!-- Quantity Selection -->
-                    <div class="mb-3">
-                        <label for="quantity" class="form-label">SELECT QUANTITY:</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" required>
-                    </div>
+                  
                     
                     <!-- Shipping Information -->
                    <h4 style="color:green;"> In stock<i class="bi bi-check2-circle"></i></h4>
