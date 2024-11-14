@@ -30,6 +30,7 @@ urlpatterns = [
     path('payment_failed/',views.payment_failed,name='paymentfailed'),
     
     
+    
 
 ]
 
