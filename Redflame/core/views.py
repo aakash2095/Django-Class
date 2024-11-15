@@ -3,7 +3,7 @@ from .forms import Registerform, Authenticateform , userchange ,AdminProfileForm
 from django.contrib.auth import authenticate, login, logout , update_session_auth_hash
 from django.contrib import messages
 from . models import new_arrival,CartUpperwear,Userdetails,Order
-from django.contrib.auth.forms import SetPasswordForm
+
 
 
 from paypal.standard.forms import PayPalPaymentsForm
@@ -93,19 +93,7 @@ def changepassword(request):
         return redirect('login')
 
     
-def forgotpassword(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            pf = SetPasswordForm(request.user,request.POST)
-            if pf.is_valid():
-                pf.save()
-                update_session_auth_hash(request, pf.user)
-                return redirect('profile')
-        else:
-            pf = SetPasswordForm(user=request.user)  
-        return render(request, 'core/forgotpassword.html', {'pf': pf})  
-    else:
-        return redirect('login')
+
         
 
 ####################  FETCHING IMAGE THROUGH DATABASE AND REDIRECT TO DETAILS PAGE #########################
