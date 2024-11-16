@@ -257,4 +257,5 @@ def payment_failed(request):
     return render(request,'core/payment_failed.html')
 
 def order(request):
-    return render (request,'core/order.html')
+    ord=Order.objects.filter(user=request.user)
+    return render (request,'core/order.html',{'ord':ord})
