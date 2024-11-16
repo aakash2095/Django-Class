@@ -99,7 +99,8 @@ def changepassword(request):
 ####################  FETCHING IMAGE THROUGH DATABASE AND REDIRECT TO DETAILS PAGE #########################
 
 def trending(request):
-    return render(request,'core/trending.html')
+    rf=new_arrival.objects.filter(category='TRENDING')
+    return render(request,'core/trending.html',{'rf':rf})
 
 def newarrival(request):
     rf=new_arrival.objects.filter(category='NEWARRIVAL')
@@ -130,35 +131,50 @@ def bigcard(request,id):
 
 
 def add_to_cart(request, id):
-    na = new_arrival.objects.get(pk=id)  
-    user = request.user
-    CartUpperwear(user=user, product=na).save()
-    messages.success(request,'ADDED TO CART!!')
-    return redirect('bigcard', id)
+    if request.user.is_authenticated:
+        na = new_arrival.objects.get(pk=id)  
+        user = request.user
+        CartUpperwear(user=user, product=na).save()
+        messages.success(request,'ADDED TO CART!!')
+        return redirect('bigcard', id)
+    else:
+        return redirect('login')
 
 
 def showcart(request):
-    ca=CartUpperwear.objects.filter(user=request.user)
-    return render (request,'core/showcart.html',{'ca':ca})
+    if request.user.is_authenticated:
+        ca=CartUpperwear.objects.filter(user=request.user)
+        return render (request,'core/showcart.html',{'ca':ca})
+    else:
+        return redirect('login')
 
 def delete_cart(request, id):
-    ca = CartUpperwear.objects.get(pk=id) 
-    ca.delete()
-    return redirect('showcart') 
+    if request.user.is_authenticated:
+        ca = CartUpperwear.objects.get(pk=id) 
+        ca.delete()
+        return redirect('showcart') 
+    else:
+        return redirect('login')
 
 
 def add_item(request,id):
-    product =get_object_or_404(CartUpperwear,pk=id)
-    product.quantity +=1
-    product.save()
-    return redirect('showcart')
+    if request.user.is_authenticated:
+        product =get_object_or_404(CartUpperwear,pk=id)
+        product.quantity +=1
+        product.save()
+        return redirect('showcart')
+    else:
+        return redirect('login')
 
 def delete_item(request,id):
-    product=get_object_or_404(CartUpperwear,pk=id)
-    if product.quantity>1:
-        product.quantity -=1
-        product.save()
-    return redirect('showcart')
+    if request.user.is_authenticated:
+        product=get_object_or_404(CartUpperwear,pk=id)
+        if product.quantity>1:
+            product.quantity -=1
+            product.save()
+        return redirect('showcart')
+    else:
+        return redirect ('login')
 
 ########################## ADDRESS PAGE #########################
 
@@ -193,14 +209,17 @@ def showaddress(request):
 ###################################  CHECKOUT PAGE ####################################
 
 def checkout(request):
-    ca=CartUpperwear.objects.filter(user=request.user)
-    total=0
-    Delivery_charge = 149 
-    for c in ca :
-        total+=(c.product.discounted_price*c.quantity)
-        final_price = total+Delivery_charge
-    address=Userdetails.objects.filter(user=request.user)
-    return render(request, 'core/checkout.html', {'ca': ca,'total':total,'final_price':final_price,'address':address})
+    if request.user.is_authenticated:
+        ca=CartUpperwear.objects.filter(user=request.user)
+        total=0
+        Delivery_charge = 149 
+        for c in ca :
+            total+=(c.product.discounted_price*c.quantity)
+            final_price = total+Delivery_charge
+        address=Userdetails.objects.filter(user=request.user)
+        return render(request, 'core/checkout.html', {'ca': ca,'total':total,'final_price':final_price,'address':address})
+    else:
+        return redirect ('login')
     
 
 
