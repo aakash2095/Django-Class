@@ -28,7 +28,9 @@ urlpatterns = [
     path('payment_success/<int:selected_address_id>/',views.payment_success,name='paymentsuccess'),
     path('payment_failed/',views.payment_failed,name='paymentfailed'),
     path('payment/',views.payment,name='payment'),
-    path('order/',views.order,name='order')
+    path('order/',views.order,name='order'),
+    path('buynow/<int:id>',views.buynow,name='buynow'),
+    path('buynow_payment/<int:id>',views.buynow_payment,name='buynowpayment'),
     
     
     

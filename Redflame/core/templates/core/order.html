@@ -28,11 +28,16 @@
                         <div class="card shadow-0 border mb-4">
                             <div class="card-body">
                                 <div class="row">
+                                    <div class="col-md-2 text-center d-flex justify-content-left align-items-center">
+                                        <img src="https://img.freepik.com/free-vector/branding-identity-corporate-vector-logo-r-design_460848-8462.jpg?t=st=1731853559~exp=1731857159~hmac=1db9e7aa7bcec23c6e778e0346b2dc21670153a60c274d6e95092cd8cf1c41b1&w=740" alt="Image Description" class="img-fluid me-2" style="width: 50px; height: 50px; object-fit: cover;">
+                                        
+                                    </div>
+                                    
                                     <div class="col-md-6 text-center d-flex justify-content-left align-items-center">
                                         <p class="text-muted mb-0"><strong class='text-dark'>{{ o.cloth.short_d }}</strong></p>
                                     </div>
-                                    <div class="col-md-4 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0 small"> <strong class='text-dark'>{{ o.quantity }}</strong></p>
+                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0 small"> <strong class='text-dark'>Qty: {{ o.quantity }}</strong></p>
                                     </div>
                                     <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                                         <p class="text-muted mb-0 small"><strong class='text-dark'>&#x20B9;{{o.cloth.discounted_price}}</strong> </p>
@@ -60,33 +65,17 @@
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                         <hr>
                         <!-- Order Summary -->
-                        <div class="d-flex justify-content-between pt-2">
-                          <p class="fw-bold mb-0">Order Details</p>
-                          <p class="text-muted mb-0"><span class="fw-bold me-4">Total:</span><strong>&#x20B9;{{ o.cloth.discounted_price }}</strong> </p>  <!-- Use total_price from context -->
-                      </div>
-                      
-                      <div class="d-flex justify-content-between">
-                          <p class="text-muted mb-0">Invoice Date: 20 Sept, 2024</p>
-                          <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Charges:</span><strong> &#x20B9; 149</strong> </p> <!-- Platform Fee is Free -->
-                      </div>
-                      <div class="d-flex justify-content-between mb-5">
-                          <p class="text-muted mb-0">Receipt Voucher: RDFM-20241116-001</p>
-                          <p class="text-muted mb-0"><span class="fw-bold me-4">Platform Fee:</span> <s class='text-danger'>49</s> <span class="text-success">Free</span></p>  <!-- Use delivery_charge from context -->
-                      </div>
                       
                       
-                      <div class="card-footer border-0 px-4 py-5" 
-                      style="background-color: black; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                      <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">
-                        Total paid: <span class="h2 mb-0 ms-2">INR &#x20B9;{{o.cloth.discounted_price|add:149}}</span>
-                      </h5>
+                      
+                     
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            {% endfor %}
 </section>
 {% endblock content %}

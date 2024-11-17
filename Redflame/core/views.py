@@ -278,3 +278,37 @@ def payment_failed(request):
 def order(request):
     ord=Order.objects.filter(user=request.user)
     return render (request,'core/order.html',{'ord':ord})
+
+
+def buynow(request,id):
+    na=new_arrival.objects.get(pk=id)
+    Delivery_charge = 149 
+    final_price=Delivery_charge + na.discounted_price
+    address=Userdetails.objects.filter(user=request.user)
+    return render(request,'core/buynow.html',{'final_price':final_price,'address':address,'na':na})
+
+def buynow_payment(request,id):
+    if request.method == 'POST':
+        selected_address_id= request.POST.get('buynow_selected_address')
+    na=new_arrival.objects.get(pk=id)
+    Delivery_charge = 149 
+    final_price=Delivery_charge + na.discounted_price
+    #================= Paypal Code ======================================
+
+    host = request.get_host()   # Will fecth the domain site is currently hosted on.
+
+    paypal_checkout = {
+        'business': settings.PAYPAL_RECEIVER_EMAIL,
+        'amount': final_price,
+        'item_name': 'Pet',
+        'invoice': uuid.uuid4(),
+        'currency_code': 'USD',
+        'notify_url': f"http://{host}{reverse('paypal-ipn')}",
+        'return_url': f"http://{host}{reverse('buynowpaymentsuccess', args=[selected_address_id,id])}",
+        'cancel_url': f"http://{host}{reverse('paymentfailed')}",
+    }
+
+    paypal_payment = PayPalPaymentsForm(initial=paypal_checkout)
+
+    #========================================================================
+    return render(request,'core/payment.html',{'final_price':final_price,'address':address,'na':na,'paypal':paypal_payment})
