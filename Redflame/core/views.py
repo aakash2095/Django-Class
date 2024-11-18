@@ -312,3 +312,12 @@ def buynow_payment(request,id):
 
     #========================================================================
     return render(request,'core/payment.html',{'final_price':final_price,'address':address,'na':na,'paypal':paypal_payment})
+
+def buynowpaymentsuccess(request,selected_address_id,id):
+    
+    user=request.user
+    print(user)
+    user_data=Userdetails.objects.get(pk=selected_address_id)
+    na=new_arrival.objects.get(pk=id)
+    Order(user=user,customer=user_data,cloth=na,quantity=1).save()
+    return render (request,'core/buynowpaymentsuccess.html')
