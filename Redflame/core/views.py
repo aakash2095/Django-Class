@@ -5,11 +5,23 @@ from django.contrib import messages
 from . models import new_arrival,CartUpperwear,Userdetails,Order
 
 
+#============================= Paypal ===============================
 
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 import uuid
 from django.urls import reverse
+
+
+#================ Forgot Password ======================
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.template.loader import render_to_string
+from django.http import HttpResponse
 
 
 def index(request):
@@ -24,6 +36,16 @@ def register(request):
             if rf.is_valid():
                 rf.save()
                 messages.success(request, 'Registration Successful')
+                email = request.POST['email']
+                user = User.objects.filter(email=email).first()
+                if user:
+                   send_mail(
+                    'Registration Successful',
+                    'Dear User,\n\nThank you for registering with us! We are excited to have you on board and look forward to providing you with the best experience. If you have any questions or need assistance, feel free to reach out to us.\n\nBest regards,\n[Red Flame & Team]',
+                    'redflamepremium@gmail.com',  # Use a verified email address
+                    [email],
+                    fail_silently=False,
+)
                 return redirect('login')
         else:
             rf = Registerform()
@@ -267,7 +289,14 @@ def payment_success(request, selected_address_id):
             quantity=cart.quantity,
             cloth=cart.product).save()
         cart.delete() 
-    
+    send_mail(
+                'Thank You for Your Order',
+                f'Hello ,\n\nThank you for placing your order with us! We appreciate your business and are processing your order. You will receive an update soon with the details of your shipment.\n\nIn the meantime, you can track your order on our website .\n\nIf you have any questions, feel free to contact us.\n\nBest regards,\nRed Flame & Team',
+                'redflamepremium@gmail.com',  # Use a verified email address
+                [request.user.email],
+                fail_silently=False,
+            )
+
     return render(request, 'core/payment_success.html')
 
 
@@ -321,3 +350,52 @@ def buynowpaymentsuccess(request,selected_address_id,id):
     na=new_arrival.objects.get(pk=id)
     Order(user=user,customer=user_data,cloth=na,quantity=1).save()
     return render (request,'core/buynowpaymentsuccess.html')
+
+
+
+#================================== Forget Password ====================================================
+
+def forgot_password(request):          
+    if request.method == 'POST':
+        email = request.POST['email']
+        user = User.objects.filter(email=email).first()
+        if user:
+            token = default_token_generator.make_token(user)
+            uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+            reset_url = request.build_absolute_uri(f'/reset_password/{uidb64}/{token}/')           
+            send_mail(
+                'Password Reset',
+                f'Click the following link to reset your password: {reset_url}',
+                'redflamepremium@gmail.com',  # Use a verified email address
+                [email],
+                fail_silently=False,
+            )
+            return redirect('passwordresetdone')
+        else:
+            messages.success(request,'please enter valid email address')
+    return render(request, 'core/forgot_password.html')
+                                         
+    # return render(request,'core/forgot_password.html',)
+
+def reset_password(request, uidb64, token):
+    if request.method == 'POST':
+        password = request.POST['password']
+        password2 = request.POST['password2']
+        if password == password2:
+            try:
+                uid = force_str(urlsafe_base64_decode(uidb64))
+                user = User.objects.get(pk=uid)
+                if default_token_generator.check_token(user, token):
+                    user.set_password(password)
+                    user.save()
+                    return redirect('login')
+                else:
+                    return HttpResponse('Token is invalid', status=400)
+            except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+                return HttpResponse('Invalid link', status=400)
+        else:
+            return HttpResponse('Passwords do not match', status=400)
+    return render(request, 'core/reset_password.html')
+
+def password_reset_done(request):
+    return render(request, 'core/password_reset_done.html')

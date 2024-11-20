@@ -31,7 +31,10 @@ urlpatterns = [
     path('order/',views.order,name='order'),
     path('buynow/<int:id>',views.buynow,name='buynow'),
     path('buynow_payment/<int:id>',views.buynow_payment,name='buynowpayment'),
-    path('buynowpaymentsuccess/<int:selected_address_id>/<int:id>',views.buynowpaymentsuccess,name='buynowpaymentsuccess')
+    path('buynowpaymentsuccess/<int:selected_address_id>/<int:id>',views.buynowpaymentsuccess,name='buynowpaymentsuccess'),
+    path('forgotpassword/',views.forgot_password, name="forgotpassword"),
+    path('reset_password/<uidb64>/<token>/', views.reset_password, name='resetpassword'),
+    path('password_reset_done/', views.password_reset_done, name='passwordresetdone'),
     
     
     
