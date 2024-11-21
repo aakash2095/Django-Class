@@ -140,6 +140,7 @@ def Tshirt(request):
 
 def bigcard(request,id):
     rf=new_arrival.objects.get(pk=id)
+
     return render(request,'core/bigcard.html',{'rf':rf})
 
 
@@ -152,15 +153,23 @@ def bigcard(request,id):
 
 
 
+from django.contrib import messages
+from django.shortcuts import redirect
+from .models import CartUpperwear, new_arrival
+
 def add_to_cart(request, id):
-    if request.user.is_authenticated:
-        na = new_arrival.objects.get(pk=id)  
+    if request.user.is_authenticated: 
+        na = new_arrival.objects.get(pk=id)
         user = request.user
-        CartUpperwear(user=user, product=na).save()
-        messages.success(request,'ADDED TO CART!!')
-        return redirect('bigcard', id)
+        if CartUpperwear.objects.filter(user=user, product=na).exists():
+            messages.error(request, 'This item is already in your cart!')
+        else:
+            CartUpperwear(user=user, product=na).save()
+            messages.success(request, 'Item added to cart successfully!')       
+        return redirect('bigcard', id)  
     else:
-        return redirect('login')
+        return redirect('login')  
+
 
 
 def showcart(request):
@@ -182,6 +191,9 @@ def delete_cart(request, id):
 def add_item(request,id):
     if request.user.is_authenticated:
         product =get_object_or_404(CartUpperwear,pk=id)
+        if product.quantity >=4:
+            messages.error(request, "You cannot add more than 4 of this item.")
+            return redirect('showcart')
         product.quantity +=1
         product.save()
         return redirect('showcart')

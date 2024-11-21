@@ -49,15 +49,23 @@
               </a>
             </button>
         </a>
-        </div>
-        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-          <h5 class="mb-0">INR &#8377 {{c.price_and_quantity_total}}</h5>
-        </div>
-        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-          <a href="{% url "delete_cart" c.id %}" class="text-danger"><i class="bi bi-trash3-fill"></i></a>
+        
+      </div>
+      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+        <h5 class="mb-0">INR &#8377 {{c.price_and_quantity_total}}</h5>
+      </div>
+      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+        <a href="{% url "delete_cart" c.id %}" class="text-danger"><i class="bi bi-trash3-fill"></i></a>
         </div>
       </div>
     </div>
+    {% if messages %}
+    <div class="alert alert-danger" style="display: inline-block; padding: px; border: 1px solid #f5c6cb; border-radius: 5px; background-color: #f8d7da; color: #721c24; margin: 5px 0;">
+        {% for message in messages %}
+            <span>{{ message }}</span>
+        {% endfor %}
+    </div>
+  {% endif %}
   </div>
   
   {% endfor %}
