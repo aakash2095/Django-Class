@@ -36,12 +36,17 @@
                                     <div class="col-md-6 text-center d-flex justify-content-left align-items-center">
                                         <p class="text-muted mb-0"><strong class='text-dark'>{{ o.cloth.short_d }}</strong></p>
                                     </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0 small"> <strong class='text-dark'>Qty: {{ o.quantity }}</strong></p>
+                                    <div class="col-6 col-md-2 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0 small">
+                                            <strong class="text-dark">Qty: {{ o.quantity }}</strong>
+                                        </p>
                                     </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0 small"><strong class='text-dark'>&#x20B9;{{o.cloth.discounted_price}}</strong> </p>
+                                    <div class="col-6 col-md-2 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0 small">
+                                            <strong class="text-dark">&#x20B9;{{ o.cloth.discounted_price }}</strong>
+                                        </p>
                                     </div>
+                                    
                                 </div>
                                 <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
                                 <!-- Track Order Section -->
